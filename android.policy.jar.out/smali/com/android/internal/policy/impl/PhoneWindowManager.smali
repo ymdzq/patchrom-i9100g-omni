@@ -217,6 +217,8 @@
 
 .field mBroadcastWakeLock:Landroid/os/PowerManager$WakeLock;
 
+.field private mButtonLightEnabled:Z
+
 .field mCarDockEnablesAccelerometer:Z
 
 .field mCarDockIntent:Landroid/content/Intent;
@@ -486,7 +488,7 @@
 
 .field private mPowerKeyTriggered:Z
 
-.field private final mPowerLongPress:Ljava/lang/Runnable;
+.field private mPowerLongPress:Ljava/lang/Runnable;
 
 .field mPowerManager:Landroid/os/PowerManager;
 
@@ -501,6 +503,8 @@
 .field private mPressOnHomeBehavior:I
 
 .field private mPressOnMenuBehavior:I
+
+.field private final mQuickBootLock:Ljava/lang/Object;
 
 .field mRecentAppsDialog:Lcom/android/internal/policy/impl/RecentApplicationsDialog;
 
@@ -5494,6 +5498,12 @@
 
     move-result p3
 
+    invoke-virtual/range {p0 .. p1}, Lcom/android/internal/policy/impl/PhoneWindowManager;->getExtraSystemUiVisibility(Landroid/view/WindowManagerPolicy$WindowState;)I
+
+    move-result v19
+
+    or-int p3, p3, v19
+
     .line 6198
     if-eqz v10, :cond_14
 
@@ -5516,12 +5526,6 @@
     move/from16 v1, v19
 
     invoke-direct {v0, v1}, Lcom/android/internal/policy/impl/PhoneWindowManager;->sendAppImmersiveMode(I)V
-
-    invoke-virtual/range {p0 .. p1}, Lcom/android/internal/policy/impl/PhoneWindowManager;->getExtraSystemUiVisibility(Landroid/view/WindowManagerPolicy$WindowState;)I
-
-    move-result v18
-
-    or-int p3, p3, v18
 
     .line 6202
     return p3
@@ -18450,6 +18454,8 @@
     move-result v19
 
     if-eqz v19, :cond_27
+
+    if-eqz p3, :cond_27
 
     .line 4880
     invoke-interface/range {v17 .. v17}, Lcom/android/internal/telephony/ITelephony;->endCall()Z

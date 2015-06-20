@@ -188,6 +188,30 @@
     throw v2
 .end method
 
+.method private static fixOtaPath(Ljava/lang/String;)Ljava/lang/String;
+    .locals 2
+    .param p0, "filename"
+
+    .prologue
+    const-string v0, "storage/emulated"
+
+    const-string v1, "data/media"
+
+    invoke-virtual {p0, v0, v1}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+
+    move-result-object p0
+
+    const-string v0, "storage/extSdCard"
+
+    const-string v1, "external_sd"
+
+    invoke-virtual {p0, v0, v1}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
 .method private static getTrustedCerts(Ljava/io/File;)Ljava/util/HashSet;
     .locals 7
     .param p0, "keystore"    # Ljava/io/File;
@@ -513,6 +537,10 @@
 
     .line 334
     .local v1, "filename":Ljava/lang/String;
+    invoke-static {v1}, Landroid/os/RecoverySystem;->fixOtaPath(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
     const-string v2, "RecoverySystem"
 
     new-instance v3, Ljava/lang/StringBuilder;

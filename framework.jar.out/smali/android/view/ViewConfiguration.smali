@@ -480,6 +480,16 @@
 
     move/from16 v0, v16
 
+    move-object/from16 v1, p1
+
+    invoke-static {v1, v0}, Landroid/view/ViewConfigurationHelper;->getOverScrollDistance(Landroid/content/Context;I)I
+
+    move-result v16
+
+    move/from16 v16, v0
+
+    move/from16 v0, v16
+
     move-object/from16 v1, p0
 
     iput v0, v1, Landroid/view/ViewConfiguration;->mOverscrollDistance:I
@@ -496,6 +506,16 @@
     move/from16 v0, v16
 
     float-to-int v0, v0
+
+    move/from16 v16, v0
+
+    move/from16 v0, v16
+
+    move-object/from16 v1, p1
+
+    invoke-static {v1, v0}, Landroid/view/ViewConfigurationHelper;->getOverFlingDistance(Landroid/content/Context;I)I
+
+    move-result v16
 
     move/from16 v16, v0
 

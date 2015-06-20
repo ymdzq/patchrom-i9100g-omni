@@ -12186,6 +12186,8 @@
 
     invoke-interface {v9, v3, v10}, Landroid/os/IBinder;->unlinkToDeath(Landroid/os/IBinder$DeathRecipient;I)Z
 
+    const/4 v3, 0x0
+
     .line 1655
     .end local v2    # "h":Landroid/media/AudioService$SetModeDeathHandler;
     :cond_2

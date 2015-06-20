@@ -4381,7 +4381,7 @@
 .end method
 
 .method private updateLightsLocked()V
-    .locals 8
+    .locals 9
 
     .prologue
     .line 2388
@@ -4426,7 +4426,21 @@
 
     iget-boolean v6, p0, Lcom/android/server/NotificationManagerService;->mScreenOn:Z
 
-    if-eqz v6, :cond_1
+    if-nez v6, :cond_2
+
+    iget-object v6, p0, Lcom/android/server/NotificationManagerService;->mContext:Landroid/content/Context;
+
+    iget-object v7, p0, Lcom/android/server/NotificationManagerService;->mLedNotification:Lcom/android/server/NotificationManagerService$NotificationRecord;
+
+    iget-object v7, v7, Lcom/android/server/NotificationManagerService$NotificationRecord;->sbn:Landroid/service/notification/StatusBarNotification;
+
+    const-string v8, "_led"
+
+    invoke-static {v6, v7, v8}, Lmiui/util/NotificationFilterHelper;->isAllowed(Landroid/content/Context;Landroid/service/notification/StatusBarNotification;Ljava/lang/String;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_1
 
     iget-boolean v6, p0, Lcom/android/server/NotificationManagerService;->mScreenOnNotificationLed:Z
 
@@ -4565,6 +4579,18 @@
 
     .line 2415
     iget v1, p0, Lcom/android/server/NotificationManagerService;->mDefaultNotificationLedOff:I
+
+    iget-object v6, p0, Lcom/android/server/NotificationManagerService;->mContext:Landroid/content/Context;
+
+    iget v7, p0, Lcom/android/server/NotificationManagerService;->mDefaultNotificationColor:I
+
+    invoke-static {v6, v4, v7}, Lcom/android/server/NotificationLightController;->updateNotificationLight(Landroid/content/Context;Landroid/app/Notification;I)V
+
+    iget v0, v4, Landroid/app/Notification;->ledARGB:I
+
+    iget v2, v4, Landroid/app/Notification;->ledOnMS:I
+
+    iget v1, v4, Landroid/app/Notification;->ledOffMS:I
 
     goto :goto_3
 .end method
@@ -8592,4 +8618,14 @@
     invoke-virtual {v1, v2}, Landroid/content/Context;->unbindService(Landroid/content/ServiceConnection;)V
 
     goto :goto_0
+.end method
+
+.method static synthetic access_updateNotificationPulse(Lcom/android/server/NotificationManagerService;)V
+    .locals 0
+    .param p0, "x0"    # Lcom/android/server/NotificationManagerService;
+
+    .prologue
+    invoke-direct {p0}, Lcom/android/server/NotificationManagerService;->updateNotificationPulse()V
+
+    return-void
 .end method
