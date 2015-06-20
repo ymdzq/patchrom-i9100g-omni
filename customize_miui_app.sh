@@ -42,7 +42,7 @@ if [ $1 = "DeskClock" ];then
 	applyPatch $1 $2
 fi
 
-if [ $1 = "MiuiFramework" ];then
+if [ $1 = "miuisystem" ];then
     cp $1/GT-I9100G.xml $2/assets/device_features/
     cp $1/i9100g.xml $2/assets/device_features/
 fi

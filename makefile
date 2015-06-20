@@ -19,7 +19,7 @@ local-modified-jars :=
 # All apks from MIUI
 local-miui-removed-apps := 
 
-local-miui-modified-apps := Calculator DeskClock GameCenter MiuiFramework MiuiHome Music SecurityCenter Settings TeleService ThemeManager XiaomiAccount
+local-miui-modified-apps := Calculator DeskClock GameCenter miuisystem MiuiHome Music SecurityCenter Settings TeleService XiaomiAccount
 
 local-density := XHDPI
 

@@ -1,0 +1,53 @@
+From 92b5126d39d84f0a794480f17f1080f5b03f67d3 Mon Sep 17 00:00:00 2001
+From: ymdzq <233900743@qq.com>
+Date: Wed, 3 Jun 2015 10:25:37 +0800
+Subject: [PATCH] fix apn
+
+---
+ Settings/smali/com/android/settings/ApnEditor.smali   | 4 ++--
+ Settings/smali/com/android/settings/ApnSettings.smali | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+--- a/Settings/smali/com/android/settings/ApnEditor.smali
++++ b/Settings/smali/com/android/settings/ApnEditor.smali
+@@ -535,7 +535,7 @@
+ 
+     invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    const-string v9, "gsm.apn.sim.operator.numeric."
++    const-string v9, "gsm.sim.operator.numeric."
+ 
+     invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+@@ -1002,7 +1002,7 @@
+     .end local v0    # "authVal":Ljava/lang/String;
+     .restart local v4    # "numeric":Ljava/lang/String;
+     :cond_2
+-    const-string v8, "gsm.apn.sim.operator.numeric"
++    const-string v8, "gsm.sim.operator.numeric"
+ 
+     invoke-static {v8}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+ 
+--- a/Settings/smali/com/android/settings/ApnSettings.smali
++++ b/Settings/smali/com/android/settings/ApnSettings.smali
+@@ -213,7 +213,7 @@
+ 
+     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+ 
+-    const-string v3, "gsm.apn.sim.operator.numeric."
++    const-string v3, "gsm.sim.operator.numeric."
+ 
+     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+@@ -346,7 +346,7 @@
+ 
+     move-result-object v1
+ 
+-    const-string v2, "gsm.apn.sim.operator.numeric"
++    const-string v2, "gsm.sim.operator.numeric"
+ 
+     const-string v3, ""
+ 
+-- 
+2.1.4
+
